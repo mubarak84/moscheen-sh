@@ -1,0 +1,11 @@
+node_modules
+.next
+dist
+coverage
+.DS_Store
+*.log
+
+# Amplify generated artifacts
+amplify/.temp
+amplify/.amplify
+amplify_outputs.json

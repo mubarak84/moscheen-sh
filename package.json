@@ -1,0 +1,20 @@
+{
+  "name": "moscheen-sh",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @moscheen-sh/web",
+    "build": "npm run build --workspace @moscheen-sh/web",
+    "start": "npm run start --workspace @moscheen-sh/web",
+    "lint": "npm run lint --workspace @moscheen-sh/web",
+    "backend:sandbox": "npx ampx sandbox",
+    "backend:deploy": "npx ampx pipeline-deploy --branch main"
+  },
+  "devDependencies": {
+    "@aws-amplify/backend": "^1.23.0"
+  }
+}
