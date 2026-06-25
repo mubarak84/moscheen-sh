@@ -7,7 +7,11 @@ export default function HomePage() {
         <p>
           Wir bauen aktuell ein Verzeichnis fuer Moscheen in Schleswig-Holstein.
           Bald findest du hier Standorte, Kontaktinformationen und weitere
-          hilfreiche Inhalte.
+          hilfreiche Inhalte. Mehr Infos unter{" "}
+          <a href="https://ahmadiyya.de" target="_blank" rel="noreferrer">
+            ahmadiyya.de
+          </a>
+          .
         </p>
       </section>
     </main>
