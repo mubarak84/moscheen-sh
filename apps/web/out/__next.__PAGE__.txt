@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[97367,["/_next/static/chunks/158myu8e_yme3.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"comingSoon","children":["$","section",null,{"className":"card","children":[["$","p",null,{"className":"eyebrow","children":"Moscheen Schleswig-Holstein"}],["$","h1",null,{"children":"Website kommt bald"}],["$","p",null,{"children":["Wir bauen aktuell ein Verzeichnis fuer Moscheen in Schleswig-Holstein. Bald findest du hier Standorte, Kontaktinformationen und weitere hilfreiche Inhalte. Mehr Infos unter"," ",["$","a",null,{"href":"https://ahmadiyya.de","target":"_blank","rel":"noreferrer","children":"ahmadiyya.de"}],"."]}]]}]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"q0JHyPFBDMH-V_i8K5QbC"}
+4:null
