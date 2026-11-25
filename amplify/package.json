@@ -1,0 +1,14 @@
+{
+  "name": "@moscheen-sh/amplify-backend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "sandbox": "npx ampx sandbox",
+    "deploy": "npx ampx pipeline-deploy --branch main"
+  },
+  "devDependencies": {
+    "@aws-amplify/backend": "^1.23.0",
+    "typescript": "^6.0.3"
+  }
+}
