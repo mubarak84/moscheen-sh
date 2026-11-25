@@ -1,4 +1,4 @@
-// The ONLY module that knows API endpoints. All data comes from Cloudflare Pages Functions (/api/*).
+// The ONLY module that knows API endpoints. All data comes from the Cloudflare Worker (/api/*).
 
 async function request(path, options = {}) {
   const res = await fetch(path, {

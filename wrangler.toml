@@ -1,14 +1,27 @@
-# Cloudflare Pages configuration (source of truth for bindings).
-# Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+# Cloudflare Workers configuration (Workers + Static Assets), deployed by Workers Builds
+# from GitHub with the deploy command `npx wrangler deploy`.
+# Docs: https://developers.cloudflare.com/workers/static-assets/
 name = "moscheen-sh"
-pages_build_output_dir = "public"
+main = "src/index.js"
 compatibility_date = "2025-09-01"
 compatibility_flags = ["nodejs_compat"]
 
+[assets]
+directory = "./public"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
+# Only these paths run the Worker; everything else is served as a static file.
+run_worker_first = ["/api/*", "/moscheen/*", "/media/*"]
+
+[observability]
+enabled = true
+
 # ---------------------------------------------------------------------------
-# Public variables (NOT secrets). Secrets go to the dashboard or:
-#   npx wrangler pages secret put RESEND_API_KEY
-#   npx wrangler pages secret put TURNSTILE_SECRET_KEY
+# Public variables (NOT secrets). Secrets go to the dashboard
+# (Worker → Settings → Variables and Secrets) or:
+#   npx wrangler secret put RESEND_API_KEY
+#   npx wrangler secret put TURNSTILE_SECRET_KEY
 # ---------------------------------------------------------------------------
 [vars]
 SITE_NAME = "Ahmadiyya Muslim Jamaat · Schleswig-Holstein"

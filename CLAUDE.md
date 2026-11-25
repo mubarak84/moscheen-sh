@@ -41,26 +41,30 @@ Photos `public/assets/img/mosques/{kiel,luebeck,nahe}.jpg` come from ahmadiyya.d
 Events, highlights and feedback in the seed data are **examples** (`isExample: true`).
 
 To add a mosque now: add an object to `MOSQUES` in `seed-data.js` (+ image).
-Later: insert a row into D1 (`db/schema.sql`) or use the admin backend.
+Later: insert a row into D1 (`db/migrations/`) or use the admin backend.
 
 ## 3. Hosting & stack (Cloudflare requirements)
 
-- **Cloudflare Pages**, connected to the GitHub repo (branch `main` = production,
-  other branches = preview deployments).
-- Pages settings: Framework preset **None**, Build command **(empty)**,
-  Build output directory **`public`**. Config lives in `wrangler.toml`
-  (`pages_build_output_dir = "public"`). Because `wrangler.toml` exists it is the
-  source of truth for bindings; **secrets** are set in the dashboard / `wrangler pages secret put`.
+- **Cloudflare Workers with Static Assets** (NOT Pages – decided 2026-11-25 after the first
+  Workers-Builds deploy). Project `moscheen-sh` is connected to GitHub via **Workers Builds**;
+  deploy command `npx wrangler deploy`; push to `main` = production.
+- `wrangler.toml`: `main = "src/index.js"`, `[assets] directory = "./public"`, binding `ASSETS`,
+  `run_worker_first = ["/api/*", "/moscheen/*", "/media/*"]` – all other paths are plain static
+  files and never invoke the Worker. **Never add `pages_build_output_dir`** (breaks `wrangler deploy`).
+- **Secrets**: dashboard (Worker → Settings → Variables and Secrets) or `npx wrangler secret put NAME`.
 - **No build step, no framework.** Plain HTML + CSS + ES modules in `public/`.
-- **Pages Functions** in `functions/` (file-based routing, ES modules,
-  `export const onRequestGet/onRequestPost`). Workers runtime – no Node APIs
-  (use `fetch`, `crypto.subtle`, `HTMLRewriter`). `compatibility_date` in wrangler.toml.
-- Files/folders starting with `_` in `functions/` are not routes (`_lib`, `_middleware.js`).
-- Static headers: `public/_headers`; redirects: `public/_redirects`.
+- `src/index.js` = Worker entry + **router**. Handlers in `functions/` keep the Pages-Functions
+  signature (`export const onRequestGet/onRequestPost(context)`, context = `{request, env, params,
+  data, waitUntil, next}`) and middlewares (`_middleware.js` → `onRequest`). **New route = new file in
+  `functions/` + one line in `ROUTES` in `src/index.js`.** Unknown `/api/*` → JSON 404, otherwise → assets.
+- Workers runtime – no Node APIs (use `fetch`, `crypto.subtle`, `HTMLRewriter`).
+- Static headers: `public/_headers`; redirects: `public/_redirects` (both supported by Workers assets,
+  but they do NOT apply to Worker responses → `functions/_middleware.js` sets CSP for HTML).
 
 ## 4. Architecture
 
 ```
+src/index.js            Worker entry: router (ROUTES table) → handlers in functions/, else static assets
 public/                 static frontend (served as-is)
   index.html            start page
   moschee.html          detail page template (served by functions/moscheen/[slug].js)
@@ -152,7 +156,7 @@ Booking emails go to the mosque's `bookingEmail` (if set) else `MAIL_ADMIN_TO`.
 
 ```bash
 npm install          # only installs wrangler (dev dependency)
-npm run dev          # wrangler pages dev → http://localhost:8788
+npm run dev          # wrangler dev → http://localhost:8788
 ```
 Without `RESEND_API_KEY` the email content is printed in the wrangler console.
 Local D1 (phase 2): `npm run db:seed:generate`, `npm run db:migrate:local`, `npm run db:seed:local`.

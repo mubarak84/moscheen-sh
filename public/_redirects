@@ -1,4 +1,4 @@
-# Cloudflare Pages redirects – https://developers.cloudflare.com/pages/configuration/redirects/
+# Static asset redirects – https://developers.cloudflare.com/workers/static-assets/redirects/
 /moscheen          /#moscheen   301
 /moscheen/         /#moscheen   301
 /kontakt           /#kontakt    301

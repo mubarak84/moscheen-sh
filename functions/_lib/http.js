@@ -1,4 +1,4 @@
-/** Small response helpers for Pages Functions. */
+/** Small response helpers for the route handlers in functions/. */
 
 export function json(data, init = {}) {
   const headers = new Headers(init.headers);
