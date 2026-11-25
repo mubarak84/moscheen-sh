@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Template for /moscheen/:slug – title, meta and #initial-data are injected by functions/moscheen/[slug].js -->
+  <title>Moschee | Ahmadiyya Muslim Jamaat Schleswig-Holstein</title>
+  <meta name="description" content="Moschee der Ahmadiyya Muslim Jamaat in Schleswig-Holstein.">
+  <meta name="theme-color" content="#0f4c3a">
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="module" src="/assets/js/mosque.js"></script>
+</head>
+<body>
+  <header class="site-header" data-layout="header"></header>
+
+  <main id="main">
+    <div id="detail-loading"><div class="wrap section"><div class="skeleton"></div></div></div>
+
+    <div id="detail-content" hidden>
+      <!-- ============ BIG PICTURE ============ -->
+      <section class="mosque-hero">
+        <img class="mosque-hero__img" id="mosque-image" src="/assets/img/mosques/placeholder.svg" alt="" fetchpriority="high">
+        <div class="wrap mosque-hero__content">
+          <nav class="breadcrumb" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/#moscheen">Moscheen</a> › <span id="crumb-name"></span></nav>
+          <h1 data-ssr="name">Moschee</h1>
+          <p class="mosque-hero__sub" data-ssr="subtitle"></p>
+          <div class="hero__actions">
+            <button class="btn btn--primary btn--lg" type="button" data-open-booking>Besuch anfragen</button>
+            <a class="btn btn--ghost btn--lg" href="#ansprechpartner">Ansprechpartner</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DESCRIPTION + FACTS ============ -->
+      <section class="section section--white">
+        <div class="wrap detail">
+          <div>
+            <span class="eyebrow">Über die Moschee</span>
+            <h2>Herzlich willkommen</h2>
+            <div class="prose" id="mosque-description"></div>
+            <ul class="features" id="mosque-features"></ul>
+          </div>
+          <aside class="facts" aria-label="Adresse und Kontakt">
+            <h3>Auf einen Blick</h3>
+            <dl id="mosque-facts"></dl>
+            <button class="btn btn--dark" type="button" data-open-booking>Besuch anfragen</button>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT PERSONS ============ -->
+      <section class="section" id="ansprechpartner">
+        <div class="wrap">
+          <div class="section__head">
+            <span class="eyebrow">Ansprechpartner</span>
+            <h2>Wir sind für Sie da</h2>
+            <p class="lead">Bei Fragen zu Besuchen, Führungen oder Veranstaltungen wenden Sie sich gern direkt an uns.</p>
+          </div>
+          <div class="contacts" id="contact-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="section section--white">
+        <div class="wrap">
+          <div class="cta-band">
+            <div>
+              <h2>Besuchen Sie die Moschee in <span id="mosque-city"></span></h2>
+              <p>Wählen Sie Einzel- oder Gruppenbesuch und Ihre Wunschtermine. Wir melden uns innerhalb von 72 Stunden.</p>
+            </div>
+            <button class="btn btn--primary btn--lg" type="button" data-open-booking>Jetzt Besuch anfragen</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EVENTS & HIGHLIGHTS ============ -->
+      <section class="section" id="aktuelles">
+        <div class="wrap news-grid">
+          <div><h2>Veranstaltungen</h2><div class="cards" id="mosque-events"></div></div>
+          <div><h2>Rückblicke</h2><div class="cards" id="mosque-highlights"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ VISITOR FEEDBACK ============ -->
+      <section class="section section--white" id="eindruecke">
+        <div class="wrap">
+          <div class="section__head">
+            <span class="eyebrow">Besucherstimmen</span>
+            <h2>Eindrücke unserer Gäste</h2>
+          </div>
+          <div class="cards" id="mosque-feedback"></div>
+          <div class="detail mt-lg">
+            <div class="card">
+              <h3>Waren Sie schon bei uns? Teilen Sie Ihren Eindruck!</h3>
+              <p class="muted small">Ihr Beitrag wird nach einer kurzen Prüfung veröffentlicht. Ihre E-Mail-Adresse wird nicht angezeigt.</p>
+              <div id="feedback-form-wrap"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" data-layout="footer"></footer>
+</body>
+</html>

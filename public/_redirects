@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects – https://developers.cloudflare.com/pages/configuration/redirects/
+/moscheen          /#moscheen   301
+/moscheen/         /#moscheen   301
+/kontakt           /#kontakt    301
+/mehdiabad         /moscheen/nahe  301
+/mahdiabad         /moscheen/nahe  301

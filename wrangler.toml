@@ -1,0 +1,41 @@
+# Cloudflare Pages configuration (source of truth for bindings).
+# Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+name = "moscheen-sh"
+pages_build_output_dir = "public"
+compatibility_date = "2025-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ---------------------------------------------------------------------------
+# Public variables (NOT secrets). Secrets go to the dashboard or:
+#   npx wrangler pages secret put RESEND_API_KEY
+#   npx wrangler pages secret put TURNSTILE_SECRET_KEY
+# ---------------------------------------------------------------------------
+[vars]
+SITE_NAME = "Ahmadiyya Muslim Jamaat · Schleswig-Holstein"
+MAIL_FROM = "Ahmadiyya Schleswig-Holstein <noreply@example.org>"
+MAIL_ADMIN_TO = "info@example.org"
+TURNSTILE_SITE_KEY = ""
+# Phase 3 – Cloudflare Access for /api/admin/*
+ACCESS_TEAM_DOMAIN = ""
+ACCESS_AUD = ""
+
+# ---------------------------------------------------------------------------
+# Phase 2 – uncomment after creating the resources (see docs/DATABASE.md)
+# ---------------------------------------------------------------------------
+# npx wrangler d1 create moscheen-sh-db
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "moscheen-sh-db"
+# database_id = "<ID from the create command>"
+# migrations_dir = "db/migrations"
+
+# npx wrangler r2 bucket create moscheen-sh-media
+# [[r2_buckets]]
+# binding = "MEDIA"
+# bucket_name = "moscheen-sh-media"
+
+# Optional – rate limiting of form submissions
+# npx wrangler kv namespace create RATE_LIMIT
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT"
+# id = "<ID>"
